@@ -23,8 +23,9 @@ public class FriendController {
 
     @GetMapping("/{id}")
     public ResponseEntity<Friend> getFriendById(@PathVariable Long id){
-        return friendRepository.findById(id).map(friend -> ResponseEntity.ok().body(friend))
-                                                            .orElse(ResponseEntity.notFound().build());
+        return friendRepository.findById(id).map(friend ->
+                                                        ResponseEntity.ok().body(friend))
+                                                .orElse(ResponseEntity.notFound().build());
     }
 
     @PostMapping
