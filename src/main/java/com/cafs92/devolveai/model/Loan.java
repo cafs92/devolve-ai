@@ -13,12 +13,12 @@ public class Loan {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.PERSIST)
     private Friend friend;
 
-    @OneToOne
+    @OneToOne(cascade = CascadeType.PERSIST)
     private Item item;
 
     @Column(nullable = false)
-    private LocalDate localDate;
+    private LocalDate date;
 }
