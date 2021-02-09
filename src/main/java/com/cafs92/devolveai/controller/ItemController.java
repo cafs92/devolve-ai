@@ -34,6 +34,14 @@ public class ItemController {
         return itemRepository.save(item);
     }
 
-
-
+    @PutMapping("/{id}")
+    public ResponseEntity<Item> updateItem(@RequestBody Item item, @PathVariable Long id){
+        return itemRepository.findById(id).map(i -> {
+                                                    i.setDescription(item.getDescription());
+                                                    i.setName(item.getName());
+                                                    Item updatedItem = itemRepository.save(i);
+                                                    return ResponseEntity.ok().body(updatedItem);
+                                                    })
+                                                .orElse(ResponseEntity.notFound().build());
+    }
 }
