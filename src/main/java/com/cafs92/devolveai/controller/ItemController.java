@@ -44,4 +44,12 @@ public class ItemController {
                                                     })
                                                 .orElse(ResponseEntity.notFound().build());
     }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<?> deleteItem(@PathVariable Long id){
+        return itemRepository.findById(id).map(item -> {itemRepository.deleteById(id);
+                                                        return ResponseEntity.ok().build();
+                                                        })
+                                                .orElse(ResponseEntity.notFound().build());
+    }
 }
